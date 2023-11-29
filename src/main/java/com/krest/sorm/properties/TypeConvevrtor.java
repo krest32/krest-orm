@@ -1,4 +1,4 @@
-package com.krest.sorm;
+package com.krest.sorm.properties;
 
 public interface TypeConvevrtor {
     /**

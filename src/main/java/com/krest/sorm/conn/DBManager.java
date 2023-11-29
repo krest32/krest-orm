@@ -1,5 +1,6 @@
-package com.krest.sorm;
+package com.krest.sorm.conn;
 
+import com.krest.sorm.tools.Configuration;
 import lombok.Data;
 
 import java.io.BufferedInputStream;

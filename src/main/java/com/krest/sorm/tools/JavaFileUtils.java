@@ -1,4 +1,10 @@
-package com.krest.sorm;
+package com.krest.sorm.tools;
+
+import com.krest.sorm.conn.DBManager;
+import com.krest.sorm.properties.ColumnInfo;
+import com.krest.sorm.properties.JavaFieldGetSet;
+import com.krest.sorm.properties.TableInfo;
+import com.krest.sorm.properties.TypeConvevrtor;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.krest.sorm;
+package com.krest.sorm.query;
 
 
 public class MySqlQuery extends Query {

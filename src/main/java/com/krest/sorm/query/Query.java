@@ -1,4 +1,11 @@
-package com.krest.sorm;
+package com.krest.sorm.query;
+
+import com.krest.sorm.conn.DBManager;
+import com.krest.sorm.properties.ColumnInfo;
+import com.krest.sorm.properties.TableInfo;
+import com.krest.sorm.tools.JDBCUtils;
+import com.krest.sorm.tools.ReflectUtils;
+import com.krest.sorm.tools.StringUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -216,7 +223,6 @@ public abstract class Query implements Cloneable, Serializable {
 
     public List queryRows(final String sql, final Class clazz, final Object[] params) {
         // 用来存放查询的结果
-
 
         return (List) executeQueryTemplate(sql, params, clazz, new CallBack() {
             @Override

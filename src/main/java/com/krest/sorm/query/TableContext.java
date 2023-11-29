@@ -1,4 +1,13 @@
-package com.krest.sorm;
+package com.krest.sorm.query;
+
+import com.krest.sorm.properties.ColumnInfo;
+import com.krest.sorm.properties.TableInfo;
+import com.krest.sorm.properties.TypeConvertorImpl;
+import com.krest.sorm.properties.TypeConvevrtor;
+import com.krest.sorm.tools.Configuration;
+import com.krest.sorm.conn.DBManager;
+import com.krest.sorm.tools.JavaFileUtils;
+import com.krest.sorm.tools.StringUtils;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

@@ -1,4 +1,6 @@
-package com.krest.sorm;
+package com.krest.sorm.tools;
+
+import com.krest.sorm.conn.DBManager;
 
 public class StringUtils {
 
@@ -50,7 +52,7 @@ public class StringUtils {
     }
 
     //去掉表中所有的个字段符号
-    private static String getString(String name, String sign) {
+    public static String getString(String name, String sign) {
         StringBuilder sName = new StringBuilder();
         // 切换大小写
         if (name.contains(sign)) {
@@ -72,7 +74,7 @@ public class StringUtils {
         return sName.toString();
     }
 
-    static boolean isEmpty(String str) {
+    public static boolean isEmpty(String str) {
         if (str == null || str.length() == 0) {
             return true;
         }

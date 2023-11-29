@@ -1,4 +1,4 @@
-package com.krest.sorm;
+package com.krest.sorm.tools;
 
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
@@ -31,7 +31,7 @@ public class ReflectUtils {
                         "set" + fileName, tspToDate.getClass()
                 );
                 m.invoke(object, tspToDate);
-                
+
             } else {
                 Method m = object.getClass().getDeclaredMethod("set" + fileName,
                         columnValue.getClass());

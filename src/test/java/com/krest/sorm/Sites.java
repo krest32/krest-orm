@@ -1,4 +1,4 @@
-package com.krest;
+package com.krest.sorm;
 
 import lombok.Data;
 

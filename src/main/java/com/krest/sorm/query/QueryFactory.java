@@ -1,4 +1,6 @@
-package com.krest.sorm;
+package com.krest.sorm.query;
+
+import com.krest.sorm.conn.DBManager;
 
 public class QueryFactory  {
 

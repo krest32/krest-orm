@@ -1,4 +1,4 @@
-package com.krest.sorm;
+package com.krest.sorm.conn;
 
 import java.sql.Connection;
 import java.util.ArrayList;

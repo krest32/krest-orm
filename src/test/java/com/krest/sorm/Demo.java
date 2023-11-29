@@ -1,9 +1,9 @@
-package com.krest;
+package com.krest.sorm;
 
 
-import com.krest.sorm.MySqlQuery;
-import com.krest.sorm.Query;
-import com.krest.sorm.QueryFactory;
+import com.krest.sorm.query.MySqlQuery;
+import com.krest.sorm.query.Query;
+import com.krest.sorm.query.QueryFactory;
 import org.junit.Test;
 
 import java.util.List;
@@ -41,13 +41,14 @@ public class Demo {
     @Test
     public void QueryTest() throws CloneNotSupportedException {
         Query query = QueryFactory.createQuery();
-        List<Sites> list = query.queryRows(
-                "select * from sites where name=? or name=?;",
-                Sites.class,
-                new Object[]{"RUNOOB", "Google"}
-        );
-        for (Sites o : list) {
-            System.out.println(o.getName() + ":" + o.getUrl());
+        List<Sites> list = query
+                .queryRows(
+                        "select * from sites where name=? or name=?",
+                        Sites.class,
+                        new Object[]{"RUNOOB", "Google"}
+                );
+        for (Sites data : list) {
+            System.out.println(data.getName() + ":" + data.getUrl());
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.krest.sorm;
+package com.krest.sorm.query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
