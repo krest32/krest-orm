@@ -4,10 +4,12 @@ package com.krest.sorm;
 import com.krest.sorm.query.MySqlQuery;
 import com.krest.sorm.query.Query;
 import com.krest.sorm.query.QueryFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.List;
 
+@Slf4j
 public class Demo {
 
     @Test
@@ -41,14 +43,14 @@ public class Demo {
     @Test
     public void QueryTest() throws CloneNotSupportedException {
         Query query = QueryFactory.createQuery();
-        List<Sites> list = query
-                .queryRows(
-                        "select * from sites where name=? or name=?",
+        List<Sites> list =
+                query.queryRows(
+                        "select * from sites where name=? or name=? limit ?, ?",
                         Sites.class,
-                        new Object[]{"RUNOOB", "Google"}
+                        new Object[]{"RUNOOB", "Google", 1, 2}
                 );
         for (Sites data : list) {
-            System.out.println(data.getName() + ":" + data.getUrl());
+            log.info(data.toString());
         }
     }
 }

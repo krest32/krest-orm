@@ -1,7 +1,10 @@
 package com.krest.sorm.tools;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.PreparedStatement;
 
+@Slf4j
 public class JDBCUtils {
     /**
      * 执行参数化的Sql语句
@@ -19,7 +22,7 @@ public class JDBCUtils {
                 }
                 boolean execute = ps.execute();
                 if (execute) {
-                    System.out.println("Sql语句:【" + ps + "】  执行成功");
+                    log.info("Sql语句:【" + ps + "】  执行成功");
                 } else {
                     throw new RuntimeException("执行错误");
                 }

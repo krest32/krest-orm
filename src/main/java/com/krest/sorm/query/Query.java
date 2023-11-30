@@ -6,6 +6,7 @@ import com.krest.sorm.properties.TableInfo;
 import com.krest.sorm.tools.JDBCUtils;
 import com.krest.sorm.tools.ReflectUtils;
 import com.krest.sorm.tools.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -13,14 +14,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+@Slf4j
 public abstract class Query implements Cloneable, Serializable {
 
     //复制对象的Clone方法
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Object obj = super.clone();
-        return obj;
+        return super.clone();
     }
 
     /**
@@ -41,10 +43,9 @@ public abstract class Query implements Cloneable, Serializable {
         ResultSet resultSet = null;
         try {
             ps = con.prepareStatement(sql);
+            // 构建需要执行的 Sql 语句
             JDBCUtils.handleParams(ps, params);
             resultSet = ps.executeQuery();
-            // 显示最终的SQL语句
-            System.out.println(ps);
             return callBack.doExcute(con, ps, resultSet);
 
         } catch (Exception e) {
@@ -223,7 +224,6 @@ public abstract class Query implements Cloneable, Serializable {
 
     public List queryRows(final String sql, final Class clazz, final Object[] params) {
         // 用来存放查询的结果
-
         return (List) executeQueryTemplate(sql, params, clazz, new CallBack() {
             @Override
             public Object doExcute(Connection con, PreparedStatement ps, ResultSet rs) {
@@ -243,18 +243,17 @@ public abstract class Query implements Cloneable, Serializable {
                             String columnLabel = metaData.getColumnLabel(i + 1);
                             Object columnValue = rs.getObject(i + 1);
 
-                            if (!org.springframework.util.StringUtils.isEmpty(columnValue)) {
-                                System.out.println("columnLabel:" + columnLabel);
-                                System.out.println("columnValue:" + columnValue);
+                            if (!Objects.isNull(columnValue)) {
+                                log.info("columnLabel:" + columnLabel);
+                                log.info("columnValue:" + columnValue);
                                 //通过调用set方法，设置对象的值
                                 ReflectUtils.invokeSet(rowObj, columnLabel, columnValue);
                             }
                         }
                         list.add(rowObj);
                     }
-
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage());
                 }
                 return list;
             }

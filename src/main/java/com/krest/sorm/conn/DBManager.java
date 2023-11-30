@@ -2,6 +2,7 @@ package com.krest.sorm.conn;
 
 import com.krest.sorm.tools.Configuration;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -11,6 +12,7 @@ import java.sql.*;
 import java.util.Properties;
 
 @Data
+@Slf4j
 public class DBManager {
 
     private static Configuration conf;
@@ -23,7 +25,7 @@ public class DBManager {
             InputStream in = new BufferedInputStream(new FileInputStream("src\\main\\resources\\application.properties"));
             properties.load(in);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
         conf = new Configuration();
         //根据属性进行赋值
@@ -59,11 +61,14 @@ public class DBManager {
             // 加载驱动对象
             Class.forName(conf.getDriver());
             // 建立链接对象
-            Connection connection = DriverManager.getConnection(conf.getUrl(),
-                    conf.getUser(), conf.getPwd());
+            Connection connection = DriverManager.getConnection(
+                    conf.getUrl(),
+                    conf.getUser(),
+                    conf.getPwd()
+            );
             return connection;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return null;
         }
     }
