@@ -1,6 +1,7 @@
 package com.krest.sorm.tools;
 
 import java.lang.reflect.Method;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ReflectUtils {
@@ -26,7 +27,7 @@ public class ReflectUtils {
             // 时间格式的转换
             if (string.contains("Timestamp")) {
                 Timestamp timestamp = (Timestamp) columnValue;
-                java.util.Date tspToDate = new java.util.Date(timestamp.getTime());
+                Date tspToDate = new Date(timestamp.getTime());
                 Method m = object.getClass().getDeclaredMethod(
                         "set" + fileName, tspToDate.getClass()
                 );
